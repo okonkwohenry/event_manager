@@ -4,7 +4,8 @@
   "info": {
     "singularName": "technique",
     "pluralName": "techniques",
-    "displayName": "Technique"
+    "displayName": "Technique",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -15,6 +16,18 @@
       "type": "string",
       "unique": true,
       "required": true
+    },
+    "host": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::host.host",
+      "inversedBy": "techniques"
+    },
+    "motif": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::motif.motif",
+      "inversedBy": "techniques"
     }
   }
 }

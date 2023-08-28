@@ -4,7 +4,8 @@
   "info": {
     "singularName": "motif",
     "pluralName": "motifs",
-    "displayName": "Motif"
+    "displayName": "Motif",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -26,25 +27,32 @@
       "unique": true
     },
     "image": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
       "allowedTypes": [
         "images",
         "files",
         "videos",
         "audios"
       ],
-      "type": "media",
-      "multiple": false,
       "pluginOptions": {
         "i18n": {
           "localized": true
         }
-      },
-      "required": true
+      }
+    },
+    "events": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::event.event",
+      "mappedBy": "motif"
     },
     "techniques": {
       "type": "relation",
       "relation": "oneToMany",
-      "target": "api::technique.technique"
+      "target": "api::technique.technique",
+      "mappedBy": "motif"
     }
   }
 }

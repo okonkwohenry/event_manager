@@ -4,7 +4,8 @@
   "info": {
     "singularName": "event",
     "pluralName": "events",
-    "displayName": "Event"
+    "displayName": "Event",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -40,20 +41,23 @@
       ],
       "required": true
     },
-    "host": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::host.host"
-    },
     "venue": {
       "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::venue.venue"
+      "relation": "manyToOne",
+      "target": "api::venue.venue",
+      "inversedBy": "events"
     },
     "motif": {
       "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::motif.motif"
+      "relation": "manyToOne",
+      "target": "api::motif.motif",
+      "inversedBy": "events"
+    },
+    "host": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::host.host",
+      "inversedBy": "events"
     }
   }
 }

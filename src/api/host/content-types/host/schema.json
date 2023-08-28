@@ -4,7 +4,8 @@
   "info": {
     "singularName": "host",
     "pluralName": "hosts",
-    "displayName": "Host"
+    "displayName": "Host",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -36,25 +37,32 @@
       "unique": true
     },
     "image": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
       "allowedTypes": [
         "images",
         "files",
         "videos",
         "audios"
       ],
-      "type": "media",
-      "multiple": false,
       "pluginOptions": {
         "i18n": {
           "localized": true
         }
-      },
-      "required": true
+      }
+    },
+    "events": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::event.event",
+      "mappedBy": "host"
     },
     "techniques": {
       "type": "relation",
       "relation": "oneToMany",
-      "target": "api::technique.technique"
+      "target": "api::technique.technique",
+      "mappedBy": "host"
     }
   }
 }
