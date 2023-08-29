@@ -1,0 +1,36 @@
+variables:
+  DOCR_REGISTRY_IMAGE: registry.digitalocean.com/artnight-docker/odyssey/strapi
+
+stages:
+  - build
+  # - security
+  # - test
+  # - deploy
+  # - release
+
+build staging:
+  stage: build
+  image: docker:stable
+  before_script:
+  - apk update && apk add curl
+  - curl -Lo doctl.tar.gz https://github.com/digitalocean/doctl/releases/download/v1.91.0/doctl-1.91.0-linux-amd64.tar.gz
+    && tar xf doctl.tar.gz
+  - chmod u+x doctl
+  - mv doctl /usr/local/bin/doctl
+  services:
+  - docker:stable-dind
+  variables:
+    DOCKER_TLS_CERTDIR: "/certs"
+  only:
+  - main
+  - "/^feat.*$/"
+  - "/^fix.*$/"
+  - "/^release.*$/"
+  tags:
+  - docker
+  script:
+  - echo "//${CI_SERVER_HOST}/api/v4/projects/${CI_PROJECT_ID}/packages/npm/:_authToken=${CI_JOB_TOKEN}">.npmrc
+  - docker build -f $CI_PROJECT_DIR/docker/Dockerfile --tag $DOCR_REGISTRY_IMAGE/strapi:stage-$CI_COMMIT_SHORT_SHA
+    --tag $DOCR_REGISTRY_IMAGE/strapi:stage-latest $CI_PROJECT_DIR 
+  - doctl registry login
+  - docker push $DOCR_REGISTRY_IMAGE/strapi
