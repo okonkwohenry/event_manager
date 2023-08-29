@@ -30,7 +30,7 @@ build staging:
   - docker
   script:
   - echo "//${CI_SERVER_HOST}/api/v4/projects/${CI_PROJECT_ID}/packages/npm/:_authToken=${CI_JOB_TOKEN}">.npmrc
-  - docker build -f $CI_PROJECT_DIR/docker/Dockerfile --tag $DOCR_REGISTRY_IMAGE/strapi:stage-$CI_COMMIT_SHORT_SHA
+  - docker build -f $CI_PROJECT_DIR/Dockerfile.prod --tag $DOCR_REGISTRY_IMAGE/strapi:stage-$CI_COMMIT_SHORT_SHA
     --tag $DOCR_REGISTRY_IMAGE/strapi:stage-latest $CI_PROJECT_DIR 
   - doctl registry login
   - docker push $DOCR_REGISTRY_IMAGE/strapi
