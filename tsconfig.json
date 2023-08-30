@@ -8,7 +8,9 @@
     "./",
     "./**/*.ts",
     "./**/*.js",
-    "src/**/*.json"
+    "src/**/*.json",
+    "config/**/*.ts",
+    "src/**/*.ts", 
   ],
   "exclude": [
     "node_modules/",
