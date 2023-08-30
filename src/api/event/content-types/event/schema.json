@@ -33,31 +33,30 @@
       },
       "type": "enumeration",
       "enum": [
-        "Augsburg",
         "Berlin",
-        "Dortmund",
         "Munich",
+        "Dortmund",
+        "Dresden",
+        "Frankfurt",
         "Hamburg"
       ],
+      "default": "Berlin",
       "required": true
-    },
-    "venue": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::venue.venue",
-      "inversedBy": "events"
-    },
-    "motif": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::motif.motif",
-      "inversedBy": "events"
     },
     "host": {
       "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::host.host",
-      "inversedBy": "events"
+      "relation": "oneToOne",
+      "target": "api::host.host"
+    },
+    "motif": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::motif.motif"
+    },
+    "venue": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::venue.venue"
     }
   }
 }

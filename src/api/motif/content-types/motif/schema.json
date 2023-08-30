@@ -42,17 +42,10 @@
         }
       }
     },
-    "events": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::event.event",
-      "mappedBy": "motif"
-    },
     "techniques": {
       "type": "relation",
       "relation": "oneToMany",
-      "target": "api::technique.technique",
-      "mappedBy": "motif"
+      "target": "api::technique.technique"
     }
   }
 }

@@ -52,17 +52,10 @@
         }
       }
     },
-    "events": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::event.event",
-      "mappedBy": "host"
-    },
     "techniques": {
       "type": "relation",
       "relation": "oneToMany",
-      "target": "api::technique.technique",
-      "mappedBy": "host"
+      "target": "api::technique.technique"
     }
   }
 }

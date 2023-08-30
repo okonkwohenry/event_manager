@@ -3,6 +3,15 @@ import path from 'path';
 export default ({ env }) => {
   const client = env('DATABASE_CLIENT', 'sqlite');
 
+  const getSSLConfig = () => {
+    return process.env.NODE_ENV === 'production' 
+      ? { rejectUnauthorized: env.bool('DATABASE_SSL_SELF', false) }
+      : (env.bool('DATABASE_SSL', false) 
+          ? { rejectUnauthorized: env.bool('DATABASE_SSL_SELF', false) }
+          : false);
+  };
+  
+
   const connections = {
     mysql: {
       connection: {
@@ -55,7 +64,7 @@ export default ({ env }) => {
         database: env('DATABASE_NAME', 'strapi'),
         user: env('DATABASE_USERNAME', 'strapi'),
         password: env('DATABASE_PASSWORD', 'strapi'),
-        ssl: { rejectUnauthorized: env.bool('DATABASE_SSL_SELF', false), },
+        ssl: getSSLConfig(),
         schema: env('DATABASE_SCHEMA', 'public'),
       },
       pool: { min: env.int('DATABASE_POOL_MIN', 2), max: env.int('DATABASE_POOL_MAX', 10) },

@@ -16,18 +16,6 @@
       "type": "string",
       "unique": true,
       "required": true
-    },
-    "host": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::host.host",
-      "inversedBy": "techniques"
-    },
-    "motif": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::motif.motif",
-      "inversedBy": "techniques"
     }
   }
 }
