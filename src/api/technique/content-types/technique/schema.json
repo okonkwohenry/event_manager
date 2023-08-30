@@ -1,0 +1,33 @@
+{
+  "kind": "collectionType",
+  "collectionName": "techniques",
+  "info": {
+    "singularName": "technique",
+    "pluralName": "techniques",
+    "displayName": "Technique",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "unique": true,
+      "required": true
+    },
+    "host": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::host.host",
+      "inversedBy": "techniques"
+    },
+    "motif": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::motif.motif",
+      "inversedBy": "techniques"
+    }
+  }
+}
